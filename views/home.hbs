@@ -1,51 +1,66 @@
 <div class="container register">
   <div class="row">
-
     <div class="col-md-3 register-left">
-      <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
-      <h3>Welcome</h3>
-      <p>You are 30 seconds away from earning your own money!</p>
-      <input type="submit" name="" value="Login"/><br/>
+      <img src="\img\aqmesh-square logo (white).jpg" alt="AQMesh Logo" style="width: 100px; height: 100px;"/>
+      <h3>Welcome!</h3>
+      <p>To learn more about AQMesh Pods and how to register your own, click the button below!</p>
+      <a href="https://www.aqmesh.com/products/aqmesh/" target="_blank">
+        <input type="submit" name="" value="Learn More" style="width: auto; padding: 5%;"/><br/>
+      </a>
     </div>
 
     <div class="col-md-9 register-right">
-      <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Employee</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Hirer</a>
-        </li>
-      </ul>
 
-    <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-        <h3 class="register-heading" style="align-self: center;">Apply as a Employee</h3>
-          <div class="row register-form">
-            <div class="col-md-6">
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <h3 class="register-heading" style="align-self: center;">AQMesh Data Tracking</h3>
+            <div class="center">
+              <div class="new-col-md-6">
 
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="First Name *" value="" />
+                <div class="form-group">
+                  <label for="textInfo" style="margin-bottom: -5%; margin-left: 2%;">Account ID:</label>
+                  <input type="text" id="textInfo" class="form-control" placeholder="123456-D" value="" />
+                </div>
+
+                <div class="form-group">
+                  <label for="textInfo" style="margin-bottom: -5%; margin-left: 2%;">License Key:</label>
+                  <input type="text" id="textInfo" class="form-control" placeholder="1234-1234-1234-1234..." value="" />
+                </div>
+
+                <div class="timestamp" style="display: inline-flex;">
+
+                  <div class="form-group">
+                    <label for="textInfo" style="margin-bottom: -5%; margin-left: 2%;">Starting Date:</label>
+                    <input type="date" id="textInfo" class="form-control" value="" />
+                  </div>
+
+                  <div class="form-group" style="margin-left: 20%;">
+                    <label for="textInfo" style="margin-bottom: -5%; margin-left: 2%;">Time:</label>
+                    <input type="time" id="textInfo" class="form-control" value="" />
+                  </div>
+
+                </div>
+
+                <div class="timestamp" style="display: inline-flex;">
+
+                  <div class="form-group">
+                    <label for="textInfo" style="margin-bottom: -5%; margin-left: 2%;">Ending Date:</label>
+                    <input type="date" id="textInfo" class="form-control" value="" />
+                  </div>
+
+                  <div class="form-group" style="margin-left: 20%;">
+                    <label for="textInfo" style="margin-bottom: -5%; margin-left: 2%;">Time:</label>
+                    <input type="time" id="textInfo" class="form-control" value="" />
+                  </div>
+
+                </div>
+
+                <div class="form-group">
+                  <input type="submit" class="btnRegister"  value="Register"/>
+                </div>
+
               </div>
-
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Last Name *" value="" />
-              </div>
-
-              <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password *" value="" />
-              </div>
-
-              <div class="form-group">
-                <input type="password" class="form-control"  placeholder="Confirm Password *" value="" />
-              </div>
-
-              <div class="form-group">
-                <input type="submit" class="btnRegister"  value="Register"/>
-              </div>
-
             </div>
-          </div>
         </div>
 
         <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -78,25 +93,12 @@
                   <input type="password" class="form-control" placeholder="Confirm Password *" value="" />
                 </div>
 
-                <div class="form-group">
-                  <select class="form-control">
-                    <option class="hidden"  selected disabled>Please select your Sequrity Question</option>
-                    <option>What is your Birthdate?</option>
-                    <option>What is Your old Phone Number</option>
-                    <option>What is your Pet Name?</option>
-                  </select>
-                </div>
-
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="`Answer *" value="" />
-                </div>
-
                 <input type="submit" class="btnRegister"  value="Register"/>
               </div>
 
             </div>
         </div>
-    </div>
+      </div>
     </div>
   </div>
 </div>

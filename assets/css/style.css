@@ -1,5 +1,8 @@
-.col-md-6 {
-  text-align: center;
+.center {
+  margin: auto;
+  margin-top: 16%;
+  width: 50%;
+  padding: 10px;
 }
 
 .register{
@@ -54,11 +57,13 @@
     margin-top: 10%;
 }
 .btnRegister{
-    float: right;
-    margin-top: 10%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
     border: none;
     border-radius: 1.5rem;
-    padding: 2%;
+    padding: 3%;
     background: #0062cc;
     color: #fff;
     font-weight: 600;
