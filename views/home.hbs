@@ -15,56 +15,62 @@
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
           <h3 class="register-heading" style="align-self: center;">AQMesh Data Tracking</h3>
             <div class="center">
-              <div class="new-col-md-6">
+            <form class="formInfo" action="/test" method="post">
 
-                <div class="form-group">
-                  <label for="textInfo" style="margin-bottom: -5%; margin-left: 2%;">Account ID:</label>
-                  <input type="text" id="textInfo" class="form-control" placeholder="123456-D" value="" />
-                </div>
+                <div class="new-col-md-6">
 
-                <div class="form-group">
-                  <label for="textInfo" style="margin-bottom: -5%; margin-left: 2%;">License Key:</label>
-                  <input type="text" id="textInfo" class="form-control" placeholder="1234-1234-1234-1234..." value="" />
+                    <div class="form-group">
+                      <label for="accountID" style="margin-bottom: -5%; margin-left: 2%;">Account ID:</label>
+                      <input type="text" name="accountID" id="accountID" class="form-control" placeholder="123456-D" value="" />
+                    </div>
+
+                    <div class="form-group">
+                      <form class="licenseKey" action="/test" method="post">
+                        <label for="licenseKey" style="margin-bottom: -5%; margin-left: 2%;">License Key:</label>
+                        <input type="text" name="licenseKey" id="licenseKey" class="form-control" placeholder="1234-1234-1234-1234..." value="" />
+                      </form>
+                    </div>
+
+                    <div class="timestamp" style="display: inline-flex; width: 50%;">
+
+                      <div class="form-group">
+                        <label for="startDate" style="margin-bottom: -5%; margin-left: 2%;">Starting Date:</label>
+                        <input type="date" name="startDate" id="startDate" class="form-control" value="" />
+                      </div>
+
+                      <div class="form-group" style="margin-left: 20%; width: 100%;">
+                        <label for="startTime" style="margin-bottom: -5%; margin-left: 2%;">Time:</label>
+                        <input type="time" name="startTime" id="startTime" size="5" class="form-control" />
+                      </div>
+
+                    </div>
+
                 </div>
 
                 <div class="timestamp" style="display: inline-flex; width: 50%;">
 
                   <div class="form-group">
-                    <label for="textInfo" style="margin-bottom: -5%; margin-left: 2%;">Starting Date:</label>
-                    <input type="date" id="textInfo" class="form-control" value="" />
+                    <label for="endDate" style="margin-bottom: -5%; margin-left: 2%;">Ending Date:</label>
+                    <input type="date" name="endDate" id="endDate" class="form-control" value="" />
                   </div>
 
                   <div class="form-group" style="margin-left: 20%; width: 100%;">
-                    <label for="textInfo" style="margin-bottom: -5%; margin-left: 2%;">Time:</label>
-                    <input type="time" id="textInfo" size="5" class="form-control" />
+                    <label for="endTime" style="margin-bottom: -5%; margin-left: 2%;">Time:</label>
+                    <input type="time" name="endTime" id="endTime" size="5" class="form-control" />
                   </div>
 
                 </div>
 
-              </div>
-
-              <div class="timestamp" style="display: inline-flex; width: 50%;">
-
                 <div class="form-group">
-                  <label for="textInfo" style="margin-bottom: -5%; margin-left: 2%;">Ending Date:</label>
-                  <input type="date" id="textInfo" class="form-control" value="" />
+                  <form class="button_submit" action="/test" method="post">
+                    <input type="submit" class="btnRegister" value="Register" id="submitBtn"/>
+                  </form>
                 </div>
-
-                <div class="form-group" style="margin-left: 20%; width: 100%;">
-                  <label for="textInfo" style="margin-bottom: -5%; margin-left: 2%;">Time:</label>
-                  <input type="time" id="textInfo" size="5" class="form-control" />
-                </div>
-
-              </div>
-
-                <div class="form-group">
-                  <input type="submit" class="btnRegister"  value="Register"/>
-                </div>
-
-              </div>
+            </form>
             </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
 </div>
