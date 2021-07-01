@@ -24,12 +24,12 @@
 
                 <div class="form-group">
                   <label for="accountID" style="margin-bottom: -5%; margin-left: 2%;">Account ID:</label>
-                  <input type="text" name="accountID" id="accountID" class="form-control" placeholder="123456-D" value="" />
+                  <input type="text" name="accountID" id="accountID" class="form-control" placeholder="123456-D" required minlength="6" maxlength="6"/>
                 </div>
 
                 <div class="form-group">
                   <label for="licenseKey" style="margin-bottom: -5%; margin-left: 2%;">License Key:</label>
-                  <input type="text" name="licenseKey" id="licenseKey" class="form-control" placeholder="1234-1234-1234-1234..." value="" />
+                  <input type="text" name="licenseKey" id="licenseKey" class="form-control" placeholder="1234-1234-1234-1234..." required minlength="6" maxlength="6" />
                 </div>
 
                 <div class="timestamp" style="display: inline-flex; width: 50%;">
@@ -65,7 +65,11 @@
               <div class="form-group">
                 <input type="submit" class="btnRegister" value="Register" id="submitBtn"/>
               </div>
+
             </form>
+            
+            <!-- END OF FORM INFORMATION -->
+
           </div>
         </div>
       </div>

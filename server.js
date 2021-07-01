@@ -1,7 +1,9 @@
 // Enable NodeJS packages in project
 const express = require("express");
 const exphbs = require("express-handlebars");
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
+const cookieSession = require("cookie-session");
+const flash = require("connect-flash");
 const PATH = require("path");
 
 // JSON object parsing
@@ -9,6 +11,20 @@ const jsonParser = bodyParser.json();
 
 // Create Express instance
 const app = express();
+
+// Create app session
+app.use(cookieSession({
+  name: 'test-session1101',
+  keys: ['2yhDwesBV$WE5esa', '56y3bREFQetwyregtqwett$@WT'],
+  maxAge: 2 * 60 * 60 * 1000 // 2-hour session times
+}))
+
+// Use Flash package for input management (error control)
+app.use(flash());
+app.use(function (req, res, next) {
+  res.locals.errors = req.flash("error");
+  next();
+});
 
 // Acquire custom localhost port number
 const PORT = process.env.PORT || 1337;
@@ -50,7 +66,8 @@ app.post("/test", function(req, res) {
   console.log("--------------------------------------------\n");
 
   // Verify the validity of accountID and licenseKey
-  if(licenseKey == "" || licenseKey.length <= 2) {
+  if(licenseKey.length < 2) {
+    req.flash("error", "User does not exist.");
     res.render("404", { title: "INCORRECT INFO" });
     console.log("INCORRECT INFO");
   }
