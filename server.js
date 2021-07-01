@@ -13,8 +13,6 @@ const app = express();
 // Acquire custom localhost port number
 const PORT = process.env.PORT || 1337;
 
-
-
 // Configure template engine and template file (main.hbs)
 app.engine("hbs", exphbs({
   defaultLayout: "main",
@@ -37,7 +35,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
-
 // ------------------------ ROUTES ------------------------
 app.get("/", function(req, res) {
   res.render("home", { title: "Home Page - AQMesh API" });
@@ -49,22 +46,20 @@ app.post("/test", function(req, res) {
   const accountID = req.body.accountID;
   const licenseKey = req.body.licenseKey;
 
+  console.log("NEW ROUTE REACHED\n");
   console.log("--------------------------------------------\n");
 
-  // Check value of licenseKey
-  if(licenseKey !== "0") {
-    res.render("test", {
-      title: "Test Page - AQMesh API",
-      accountID: req.body.accountID,
-      licenseKey: req.body.licenseKey
-    });
-    console.log("Redirected to /test");
-    console.log("The licenseKey is " + licenseKey + "..\n\n");
-  }
-
-  else {
+  // Verify the validity of accountID and licenseKey
+  if(licenseKey == "" || licenseKey.length <= 2) {
     res.render("404", { title: "INCORRECT INFO" });
     console.log("INCORRECT INFO");
+  }
+
+  // Render failure page upon receiving incorrect data
+  else {
+    res.render("test", { title: "Test Page - AQMesh API" });
+    console.log("Redirected to /test");
+    console.log("The licenseKey is " + licenseKey + "..\n\n");
   }
 
   console.log("--------------------------------------------\n");
