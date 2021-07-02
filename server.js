@@ -4,6 +4,8 @@ const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
 const flash = require("connect-flash");
+const passport = require("passport");
+const Strategy = require("passport-http-bearer").Strategy;
 const PATH = require("path");
 
 // JSON object parsing
@@ -18,13 +20,6 @@ app.use(cookieSession({
   keys: ['2yhDwesBV$WE5esa', '56y3bREFQetwyregtqwett$@WT'],
   maxAge: 2 * 60 * 60 * 1000 // 2-hour session times
 }))
-
-// Use Flash package for input management (error control)
-app.use(flash());
-app.use(function (req, res, next) {
-  res.locals.errors = req.flash("error");
-  next();
-});
 
 // Acquire custom localhost port number
 const PORT = process.env.PORT || 1337;
