@@ -2,8 +2,11 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
-const cookieSession = require("cookie-session");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
+const mysql = require("my-sql");
 const flash = require("connect-flash");
+const helmet = require("helmet");
 const passport = require("passport");
 const Strategy = require("passport-http-bearer").Strategy;
 const PATH = require("path");
@@ -14,12 +17,28 @@ const jsonParser = bodyParser.json();
 // Create Express instance
 const app = express();
 
-// Create app session
-app.use(cookieSession({
+// Create secure app session
+app.use(helmet());
+
+app.use(session({
   name: 'test-session1101',
-  keys: ['2yhDwesBV$WE5esa', '56y3bREFQetwyregtqwett$@WT'],
-  maxAge: 2 * 60 * 60 * 1000 // 2-hour session times
+  secret: ['2yhDwesBV$WE5esa', '56y3bREFQetwyregtqwett$@WT'],
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: true,
+    maxAge: 2 * 60 * 60 * 1000 // 2-hour session times
+  }
 }))
+
+// Create MySQL Connection Pool
+const connection_pool = mysql.createPool({
+  host: "192.185.2.183",
+  database: "ntansino_aqmesh_test",
+  user: "ntansino_test1",
+  password: "AQMeshData",
+  port: "3306"
+});
 
 // Acquire custom localhost port number
 const PORT = process.env.PORT || 1337;
@@ -60,19 +79,21 @@ app.post("/test", function(req, res) {
   console.log("NEW ROUTE REACHED\n");
   console.log("--------------------------------------------\n");
 
-  // Verify the validity of accountID and licenseKey
-  if(licenseKey.length < 2) {
-    req.flash("error", "User does not exist.");
-    res.render("404", { title: "INCORRECT INFO" });
-    console.log("INCORRECT INFO");
-  }
+  var customerData = "INSERT INTO customerData (sessionID, companyName, username, password) VALUES (";
+  customerData += "'" + req.session.id + "',";     // sessionID
+  customerData += "'" + "randomCompany1" + "',";    // Company Name
+  customerData += "'" + accountID + "',";          // Username
+  customerData += "'" + licenseKey + "');";        // Password
 
-  // Render failure page upon receiving incorrect data
-  else {
-    res.render("test", { title: "Test Page - AQMesh API" });
-    console.log("Redirected to /test");
-    console.log("The licenseKey is " + licenseKey + "..\n\n");
-  }
+  connection_pool.query(customerData, function (err, result) {
+    if (err) {
+      throw err;
+      res.redirect(404, { title: "INCORRECT INFO" });
+    }
+
+    res.render("test", { title: "STORED IN DB" });
+
+  });
 
   console.log("--------------------------------------------\n");
 });
