@@ -76,7 +76,7 @@ app.post("/test", function(req, res) {
   const accountID = req.body.accountID;
   const licenseKey = req.body.licenseKey;
 
-  console.log("NEW ROUTE REACHED\n");
+  console.log("BEGINNING QUERY\n");
   console.log("--------------------------------------------\n");
 
   var customerData = "INSERT INTO customerData (sessionID, companyName, username, password) VALUES (";
@@ -97,6 +97,10 @@ app.post("/test", function(req, res) {
 
   console.log("--------------------------------------------\n");
 });
+
+app.get("/register", function(req,res) {
+  res.render("register");
+})
 
 app.get('/index', function (req, res) {
   res.redirect('/');
