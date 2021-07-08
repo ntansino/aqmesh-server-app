@@ -1,0 +1,57 @@
+<div class="container register">
+  <div class="row">
+    <div class="col-md-3 register-left">
+      <img src="\img\aqmesh-square logo (white).jpg" alt="AQMesh Logo" style="width: 100px; height: 100px;"/>
+      <h3>Welcome!</h3>
+      <p>To learn more about AQMesh Pods and how to register your own, click the button below!</p>
+      <a href="https://www.aqmesh.com/products/aqmesh/" target="_blank">
+        <input type="submit" name="" value="Learn More" style="width: auto; padding: 5%;"/><br/>
+      </a>
+    </div>
+
+    <div class="col-md-9 register-right">
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <h3 class="register-heading" style="align-self: center;">AQMesh Data Tracking</h3>
+          <div class="center">
+
+            <!-- STARTING POINT OF FORM -->
+
+            <form class="formInfo" action="/test" method="post">
+
+              <div class="new-col-md-6">
+
+                <div class="form-group">
+                  <label for="companyName" style="margin-bottom: -5%; margin-left: 2%;">Company Name:</label>
+                  <input type="text" name="companyName" id="companyName" class="form-control" placeholder="American Ecotech" required maxlength="50"/>
+                </div>
+
+                <div class="form-group">
+                  <label for="accountID" style="margin-bottom: -5%; margin-left: 2%;">Account ID:</label>
+                  <input type="text" name="accountID" id="accountID" class="form-control" placeholder="123456-D" required minlength="6" maxlength="6"/>
+                </div>
+
+                <div class="form-group">
+                  <label for="licenseKey" style="margin-bottom: -5%; margin-left: 2%;">License Key:</label>
+                  <input type="text" name="licenseKey" id="licenseKey" class="form-control" placeholder="1234-1234-1234-1234..." required minlength="6" maxlength="6" />
+                </div>
+
+              </div>
+
+              <div class="form-group">
+                <input type="submit" class="btnRegister" value="Register" id="submitBtn"/>
+                <a href="home" style="text-align: center;">
+                  <p style="font-size: 12px; margin-top: 5%;">Already Registered? Click Here!</p>
+                </a>
+              </div>
+
+            </form>
+
+            <!-- END OF FORM INFORMATION -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

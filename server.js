@@ -71,42 +71,80 @@ app.get("/", function(req, res) {
 });
 
 app.post("/test", function(req, res) {
-
-  // Acquire values from HTML form input
-  const accountID = req.body.accountID;
-  const licenseKey = req.body.licenseKey;
-
-  console.log("BEGINNING QUERY\n");
-  console.log("--------------------------------------------\n");
-
-  var customerData = "INSERT INTO customerData (sessionID, companyName, username, password) VALUES (";
-  customerData += "'" + req.session.id + "',";     // sessionID
-  customerData += "'" + "randomCompany1" + "',";    // Company Name
-  customerData += "'" + accountID + "',";          // Username
-  customerData += "'" + licenseKey + "');";        // Password
-
-  connection_pool.query(customerData, function (err, result) {
-    if (err) {
-      throw err;
-      res.redirect(404, { title: "INCORRECT INFO" });
-    }
-
-    res.render("test", { title: "STORED IN DB" });
-
-  });
-
-  console.log("--------------------------------------------\n");
+  res.render("test");
 });
 
 app.get("/register", function(req,res) {
-  res.render("register");
-})
+
+  // Acquire values from HTML form input
+  const sessionID = req.session.id;
+  const companyName = req.body.companyName;
+  const accountID = req.body.accountID;
+  const licenseKey = req.body.licenseKey;
+
+  if (companyName == null) {
+    res.render("register");
+  }
+
+  else {
+
+    console.log("BEGINNING QUERY\n");
+    console.log("--------------------------------------------\n");
+
+    var customerData = "INSERT INTO customerData (sessionID, companyName, username, password) VALUES (";
+    customerData += "'" + sessionID + "',";      // sessionID
+    customerData += "'" + companyName + "',";    // Company Name
+    customerData += "'" + accountID + "',";      // Username
+    customerData += "'" + licenseKey + "');";    // Password
+
+    connection_pool.query(customerData, function (err, result) {
+      if (err) {
+        throw err;
+        res.redirect(404, { title: "INCORRECT INFO" });
+      }
+
+    res.render("register");
+
+    });
+
+    console.log("--------------------------------------------\n");
+  }
+
+});
 
 app.get('/index', function (req, res) {
   res.redirect('/');
 });
 
 app.get('/home', function (req, res) {
+
+  // Acquire values from HTML form input
+  const sessionID = req.session.id;
+  const accountID = req.body.accountID;
+  const licenseKey = req.body.licenseKey;
+
+  if (accountID == null) {
+    res.render("test", { title: "NO DATA ENTERED" });
+  }
+
+  else {
+    console.log("BEGINNING QUERY\n");
+    console.log("--------------------------------------------\n");
+
+    var customerData = "SELECT * FROM customerData WHERE sessionID='" + sessionID + "'";
+
+    connection_pool.query(customerData, function (err, result) {
+      if (err) {
+        throw err;
+        res.redirect(404, { title: "INCORRECT INFO" });
+      }
+
+      res.render("test", { title: "STORED IN DB" });
+
+    });
+
+    console.log("--------------------------------------------\n");
+  }
   res.redirect('/');
 });
 
