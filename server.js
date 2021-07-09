@@ -20,6 +20,7 @@ const app = express();
 // Create secure app session
 app.use(helmet());
 
+// Launch session/cookies w/ set attributes (hash keys, session time, etc.)
 app.use(session({
   name: 'test-session1101',
   secret: ['2yhDwesBV$WE5esa', '56y3bREFQetwyregtqwett$@WT'],
@@ -70,58 +71,55 @@ app.get("/", function(req, res) {
   res.render("home", { title: "Home Page - AQMesh API" });
 });
 
-app.post("/test", function(req, res) {
-  res.render("test");
-});
-
 app.get("/register", function(req, res) {
-  res.render("register");
+  res.render("register", { title: "Register Now! - AQMesh API" });
 });
 
-app.get("home", function(req, res) {
-  res.render("/");
+app.post("/test", function(req, res) {
+  res.render("test", { title: "Test Page - DEFAULT" });
 });
 
 app.post("/tryRegister", function(req,res) {
-
   // Acquire values from HTML form input
   const sessionID = req.session.id;
   const companyName = req.body.companyName;
   const accountID = req.body.accountID;
   const licenseKey = req.body.licenseKey;
 
+  // companyName not entered by user
   if (companyName == null) {
-    res.render("register");
+    res.render("register", { title: "Error: Empty Input" });
   }
 
+  // Successful User Registration Attempt
   else {
 
     console.log("BEGINNING QUERY\n");
     console.log("--------------------------------------------\n");
 
+    // Build SQL Query with user information
     var customerData = "INSERT INTO customerData (sessionID, companyName, username, password) VALUES (";
     customerData += "'" + sessionID + "',";      // sessionID
     customerData += "'" + companyName + "',";    // Company Name
     customerData += "'" + accountID + "',";      // Username
     customerData += "'" + licenseKey + "');";    // Password
 
+    // Send Query to MySQL (INSERT)
     connection_pool.query(customerData, function (err, result) {
+
+      // Unsuccessful Data Entry --> Redirect to 404 Page
       if (err) {
         throw err;
         res.redirect(404, { title: "INCORRECT INFO" });
       }
 
-    res.render("register");
+      // Successul Data Entry --> Return to Login Page
+      res.render("/");
+      console.log("SUCCESSFUL DATA ENTRY\n")
+      console.log("--------------------------------------------\n");
 
     });
-
-    console.log("--------------------------------------------\n");
   }
-
-});
-
-app.get('/index', function (req, res) {
-  res.redirect('/');
 });
 
 app.post('/tryLogin', function (req, res) {
@@ -131,31 +129,42 @@ app.post('/tryLogin', function (req, res) {
   const accountID = req.body.accountID;
   const licenseKey = req.body.licenseKey;
 
-  if (accountID == null) {
-    res.render("test", { title: "NO DATA ENTERED" });
+  // accountID OR licenseKey not entered by user
+  if (accountID == null || licenseKey == null) {
+    res.render("test", { title: "Error: Empty Input" });
   }
 
+  // Successful User Login Attempt
   else {
     console.log("BEGINNING QUERY\n");
     console.log("--------------------------------------------\n");
 
+    // Build SQL Query with user information
     var customerData = "SELECT * FROM customerData WHERE username='" + accountID + "'";
 
+    // Send Query to MySQL (SELECT)
     connection_pool.query(customerData, function (err, result) {
+
+      // Unsuccessful Data Retrieval --> Redirect to 404 Page
       if (err) {
         throw err;
         res.redirect(404, { title: "INCORRECT INFO" });
       }
 
-      res.render("test", { title: "STORED IN DB" });
+      // Successul Data Retrieval --> Render Results on Test Page
+      res.render("test", { title: "SUCCESSFUL DATA RETRIEVAL" });
       console.log(result);
-
+      console.log("\n" + "--------------------------------------------\n");
     });
-
-    console.log("--------------------------------------------\n");
   }
 });
 
+// Homepage Edge Case
+app.get('/index', function (req, res) {
+  res.redirect('/');
+});
+
+// Redirect Incorrect URLs to 404 Page
 app.get("/*", function(req, res) {
   res.render("404");
 });
