@@ -74,7 +74,15 @@ app.post("/test", function(req, res) {
   res.render("test");
 });
 
-app.get("/register", function(req,res) {
+app.get("/register", function(req, res) {
+  res.render("register");
+});
+
+app.get("home", function(req, res) {
+  res.render("/");
+});
+
+app.post("/tryRegister", function(req,res) {
 
   // Acquire values from HTML form input
   const sessionID = req.session.id;
@@ -116,7 +124,7 @@ app.get('/index', function (req, res) {
   res.redirect('/');
 });
 
-app.get('/home', function (req, res) {
+app.post('/tryLogin', function (req, res) {
 
   // Acquire values from HTML form input
   const sessionID = req.session.id;
@@ -131,7 +139,7 @@ app.get('/home', function (req, res) {
     console.log("BEGINNING QUERY\n");
     console.log("--------------------------------------------\n");
 
-    var customerData = "SELECT * FROM customerData WHERE sessionID='" + sessionID + "'";
+    var customerData = "SELECT * FROM customerData WHERE username='" + accountID + "'";
 
     connection_pool.query(customerData, function (err, result) {
       if (err) {
@@ -140,12 +148,12 @@ app.get('/home', function (req, res) {
       }
 
       res.render("test", { title: "STORED IN DB" });
+      console.log(result);
 
     });
 
     console.log("--------------------------------------------\n");
   }
-  res.redirect('/');
 });
 
 app.get("/*", function(req, res) {
