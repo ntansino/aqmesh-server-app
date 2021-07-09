@@ -114,7 +114,7 @@ app.post("/tryRegister", function(req,res) {
       }
 
       // Successul Data Entry --> Return to Login Page
-      res.render("/");
+      res.render("home", { title: "SUCCESSFUL DATA ENTRY" });
       console.log("SUCCESSFUL DATA ENTRY\n")
       console.log("--------------------------------------------\n");
 
