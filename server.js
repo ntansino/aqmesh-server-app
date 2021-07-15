@@ -122,6 +122,14 @@ app.post("/tryRegister", function(req,res) {
   }
 });
 
+// ----------------- FOR AUTH TOKEN -----------------
+/*
+app.post('https://api.aqmeshdata.net/api/Authenticate', {
+
+})
+*/
+// ----------------- FOR AUTH TOKEN -----------------
+
 app.post('/tryLogin', function (req, res) {
 
   // Acquire values from HTML form input
@@ -136,8 +144,11 @@ app.post('/tryLogin', function (req, res) {
 
   // Successful User Login Attempt
   else {
+
+    // --------------------- BEGINNING FORMAT ---------------------
     console.log("BEGINNING QUERY\n");
     console.log("--------------------------------------------\n");
+    // --------------------- BEGINNING FORMAT ---------------------
 
     // Build SQL Query with user information
     var customerData = "SELECT * FROM customerData WHERE username='" + accountID + "'";
@@ -152,9 +163,18 @@ app.post('/tryLogin', function (req, res) {
       }
 
       // Successul Data Retrieval --> Render Results on Test Page
-      res.render("test", { title: "SUCCESSFUL DATA RETRIEVAL" });
+      res.render("test", {
+        title: "SUCCESSFUL DATA RETRIEVAL",
+        sessionID: result[0].sessionID,
+        companyName: result[0].companyName,
+        username: result[0].username,
+        password: result[0].password
+      });
+
+      // --------------------- ENDING FORMAT ---------------------
       console.log(result);
       console.log("\n" + "--------------------------------------------\n");
+      // --------------------- ENDING FORMAT ---------------------
     });
   }
 });
