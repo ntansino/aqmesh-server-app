@@ -122,13 +122,14 @@ app.post("/tryRegister", function(req,res) {
   }
 });
 
-// ----------------- FOR AUTH TOKEN -----------------
-/*
-app.post('https://api.aqmeshdata.net/api/Authenticate', {
-
-})
-*/
-// ----------------- FOR AUTH TOKEN -----------------
+// ----------------- AUTH TOKEN TESTING -----------------
+app.post('https://api.aqmeshdata.net/api.Authenticate', function(req, res) {
+  res.render(auth_url, {
+  "username":"Stephen Petrarca",
+  "password":"$SerinusCal_3000"
+  });
+});
+// ----------------- AUTH TOKEN TESTING -----------------
 
 app.post('/tryLogin', function (req, res) {
 
@@ -151,7 +152,8 @@ app.post('/tryLogin', function (req, res) {
     // --------------------- BEGINNING FORMAT ---------------------
 
     // Build SQL Query with user information
-    var customerData = "SELECT * FROM customerData WHERE username='" + accountID + "'";
+    var customerData = "SELECT * FROM customerData WHERE username='" + accountID + "'"
+                       + "AND password='" + licenseKey + "'";
 
     // Send Query to MySQL (SELECT)
     connection_pool.query(customerData, function (err, result) {
