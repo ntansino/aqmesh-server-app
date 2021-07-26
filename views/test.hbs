@@ -13,18 +13,26 @@
 
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-          <h3 class="register-heading" style="align-self: center;">AQMesh Data Tracking</h3>
+          <h3 class="register-heading" style="align-self: center;">Welcome {{{username}}}!</h3>
             <div class="center">
               <div class="new-col-md-6">
 
                 <!-- DATA WILL BE SUBMITTED HERE -->
-                <p style="margin: 20%; text-align: center; color: red; border: 3px solid red;">Requested data will appear here:</p>
+                <p style="margin: 20%; text-align: center; color: red; border: 3px solid red;">Here is the most recent data for {{{companyName}}}'s AQMesh Pods:</p>
 
                 <div class="form-group">
                   <form class="button_submit" action="/" method="get">
                     <input type="submit" class="btnRegister" value="Homepage" id="submitBtn"/>
                   </form>
                 </div>
+
+                <!-- AUTH TOKEN TESTING -->
+                <div class="form-group">
+                  <form class="button_submit" action="https://api.aqmeshdata.net/api.Authenticate" method="post">
+                    <input type="submit" class="btnRegister" value="AUTH" id="submitBtn"/>
+                  </form>
+                </div>
+                <!-- AUTH TOKEN TESTING -->
 
               </div>
             </div>
