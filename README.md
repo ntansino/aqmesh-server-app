@@ -6,7 +6,7 @@
 A web application that uses multiple resources (AQMesh API, MySQL, etc.) in order to track customer data.
 
 ### Work Flow Visualization
-![Flowchart Diagram](assets/img/aqmesh-flowchart-diagram)
+![Flowchart Diagram](assets/img/aqmesh-flowchart-diagram.png)
 
 ### Resources
 * NodeJS
