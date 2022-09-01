@@ -23,7 +23,7 @@ app.use(helmet());
 // Launch session/cookies w/ set attributes (hash keys, session time, etc.)
 app.use(session({
   name: 'test-session1101',
-  secret: ['2yhDwesBV$WE5esa', '56y3bREFQetwyregtqwett$@WT'],
+  secret: ['fakeKey123456', 'fakeKey123456'], //changed auth details since project end for security
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -34,10 +34,10 @@ app.use(session({
 
 // Create MySQL Connection Pool
 const connection_pool = mysql.createPool({
-  host: "192.185.2.183",
-  database: "ntansino_aqmesh_test",
-  user: "ntansino_test1",
-  password: "AQMeshData",
+  host: "1.1.1.1", //changed auth details since project end for security
+  database: "aqmesh_test",
+  user: "test1",
+  password: "faskePassword12345", //changed auth details since project end for security
   port: "3306"
 });
 
@@ -125,8 +125,8 @@ app.post("/tryRegister", function(req,res) {
 // ----------------- AUTH TOKEN TESTING -----------------
 app.post('https://api.aqmeshdata.net/api.Authenticate', function(req, res) {
   res.render(auth_url, {
-  "username":"Stephen Petrarca",
-  "password":"$SerinusCal_3000"
+  "username":"Fake Name", //changed auth details since project end for security
+  "password":"FakePassword12345" //changed auth details since project end for security
   });
 });
 // ----------------- AUTH TOKEN TESTING -----------------
